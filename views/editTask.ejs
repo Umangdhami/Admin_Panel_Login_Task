@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<meta name="robots" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="FinLab : Crypto Trading UI Admin  Bootstrap 5 Template">
+	<meta property="og:title" content="FinLab : Crypto Trading UI Admin  Bootstrap 5 Template">
+	<meta property="og:description" content="FinLab : Crypto Trading UI Admin  Bootstrap 5 Template">
+	<meta property="og:image" content="https://finlab.dexignlab.com/xhtml/social-image.png">
+	<link rel="stylesheet" href="../vendor/select2/css/select2.min.css">
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- PAGE TITLE HERE -->
+	<title>FinLab Crypto Trading UI Admin</title>
+
+	<!-- FAVICONS ICON -->
+
+	<link rel="shortcut icon" type="image/png" href="../images/favicon.png">
+	<link rel="stylesheet" href="../vendor/chartist/css/chartist.min.css">
+	<link href="../vendor/wow-master/css/libs/animate.css" rel="stylesheet">
+	<link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../vendor/jquery-nice-select/css/nice-select.css">
+	<link href="../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<link href="../vendor/tagify/dist/tagify.css" rel="stylesheet">
+
+	<!-- Style css -->
+	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+	<!-- Style css -->
+	<link href="../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div id="preloader">
+		<div class="loader"></div>
+	</div>
+
+	<div id="main-wrapper" class=" show">
+
+		<%- include('nav-header') -%>
+			<%- include('header') -%>
+				<%- include('sidebar') -%>
+
+					<div class="content-body">
+						<div class="container-fluid">
+							<!-- Row -->
+							<div class="row">
+								<div class="col-xl-12">
+									<div class="row page-titles gx-0">
+										<ol class="breadcrumb">
+											<li class="breadcrumb-item ps-0"><a href="javascript:void(0)">Pages</a></li>
+											<li class="breadcrumb-item"><a href="javascript:void(0)">Task</a></li>
+											<li class="breadcrumb-item active" aria-current="page">Add</li>
+										</ol>
+									</div>
+									<!-- <div class="mb-3">
+					<ul class="d-flex align-items-center flex-wrap">
+						<li><a href="add-email.html" class="btn btn-primary">task List</a></li>
+						<li><a href="task-category.html" class="btn btn-primary mx-1">task Category</a></li>
+						<li><a href="javascript:void(0);" class="btn btn-primary me-1 mt-sm-0 mt-1">Add task Category</a></li>
+						<li><a href="javascript:void(0);" class="btn btn-primary open mt-1 mt-md-0">Screen Option</a></li>
+					</ul>
+				</div>
+					-->
+
+									<form action="/updateTask" method="post">
+										<input type="hidden" name="id" value="<%= task.id %>">
+										<div class="row justify-content-center">
+											<div class="col-xl-8 col-xxl-12">
+												<div class="custom-ekeditor">
+													<div id="ckeditor"></div>
+												</div>
+												<div class="filter cm-content-box box-primary">
+													<div class="content-title">
+														<div class="cpa">
+															Description
+														</div>
+														<div class="tools">
+															<a href="javascript:void(0);"
+																class="expand SlideToolHeader"><i
+																	class="fal fa-angle-down"></i></a>
+														</div>
+													</div>
+													<div class="cm-content-body publish-content form excerpt">
+
+														<div class="card-body">
+															<label class="form-label">Title</label>
+															<input type="text" class="form-control mb-3" name="title"
+																placeholder="title..." value="<%= task.title %>">
+														</div>
+														<div class="card-body pt-0">
+															<div class="mb-3">
+																<label class="form-label">Description</label>
+																<textarea class="form-control" name="description"
+																	rows="3"></textarea>
+															</div>
+														</div>
+														<div class="card-body pt-0">
+															<div class="mb-3">
+																<div class="col-12 d-flex">
+																	<div class="col-6" style="padding-right: 10px; padding-bottom: 30px;">
+																	<div class="change-btn d-flex align-items-center flex-wrap">
+																			<input type="text" value="<%= task.date %>" name="date" id="dateInput"
+																				placeholder="Select a date">
+																			<div class="calendar" id="calendar">
+																				<div class="header">
+																					<button id="prevBtn">&lt;</button>
+																					<h2 id="monthYear">Month Year</h2>
+																					<button id="nextBtn">&gt;</button>
+																				</div>
+																				<div class="days" id="daysContainer"></div>
+																			</div>
+																	</div>
+																	
+																</div>
+																<div class="col-6" style="padding-left: 30px; padding-bottom: 30px;">
+																	<div class="change-btn d-flex align-items-center flex-wrap">
+																		<select name="status" style="width: 100%;
+																			padding: 10px;
+																			border: 1px solid #ccc;
+																			border-radius: 5px;
+																			font-size: 14px;
+																			outline: none;
+																			cursor: pointer;
+																			color: #717579;">
+																			<option value="option"
+																			style="padding: 10px; margin-top: 20px;">
+																			Select</option>
+																			<option value="pendding"
+																				style="padding: 10px; margin-top: 20px;">
+																				pendding</option>
+																			<option value="running"
+																				style="padding: 10px; margin-top: 20px;">running
+																			</option>
+																			<option value="complete"
+																				style="padding: 10px; margin-top: 20px;">
+																				complete</option>
+																		</select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														
+
+														<div class="col-12"
+															style="padding-left: 30px; padding-bottom: 30px;">
+															<button type="submit" class="btn btn-primary"
+																style="padding: 10px 30px;">Update</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="footer out-footer" style="margin: 0 auto;">
+						<div class="copyright">
+							<p>Copyright © Designed &amp; Developed by <a href="https://dexignlab.com/"
+									target="_blank">DexignLab</a> 2023</p>
+						</div>
+					</div>
+
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="input-group mb-3 d-block">
+						<label class="form-label d-block">Enter Name</label>
+						<input type="text" class="form-control w-100" placeholder="Username" aria-label="Username"
+							aria-describedby="basic-addon1">
+					</div>
+					<div class="input-group mb-3 d-block">
+						<label class="form-label d-block">Enter Position</label>
+						<input type="text" class="form-control w-100" placeholder="Username" aria-label="Username"
+							aria-describedby="basic-addon1">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Required vendors -->
+	<script src="../vendor/global/global.min.js"></script>
+	<script src="../vendor/chart.js/Chart.bundle.min.js"></script>
+	<script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+	<script src="../vendor/select2/js/select2.full.min.js"></script>
+	<script src="../js/plugins-init/select2-init.js"></script>
+	<script src="../vendor/ckeditor/ckeditor.js"></script>
+	<!-- Dashboard 1 -->
+	<script src="../js/dashboard/cms.js"></script>
+	<script src="../vendor/tagify/dist/tagify.js"></script>
+
+	<script src="../vendor/wow-master/dist/wow.min.js"></script>
+	<script src="../js/custom.min.js"></script>
+	<script src="../js/dlabnav-init.js"></script>
+	<script src="../js/demo.js"></script>
+	<script src="../js/styleSwitcher.js"></script>
+
+	<script>
+		const daysContainer = document.getElementById("daysContainer");
+		const prevBtn = document.getElementById("prevBtn");
+		const nextBtn = document.getElementById("nextBtn");
+		const monthYear = document.getElementById("monthYear");
+		const dateInput = document.getElementById("dateInput");
+		const calendar = document.getElementById("calendar");
+
+		let currentDate = new Date();
+		let selectedDate = null;
+
+		function handleDayClick(day) {
+			selectedDate = new Date(
+				currentDate.getFullYear(),
+				currentDate.getMonth(),
+				day
+			);
+			dateInput.value = selectedDate.toLocaleDateString("en-US");
+			calendar.style.display = "none";
+			renderCalendar();
+		}
+
+		function createDayElement(day) {
+			const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+			const dayElement = document.createElement("div");
+			dayElement.classList.add("day");
+
+			if (date.toDateString() === new Date().toDateString()) {
+				dayElement.classList.add("current");
+			}
+			if (selectedDate && date.toDateString() === selectedDate.toDateString()) {
+				dayElement.classList.add("selected");
+			}
+
+			dayElement.textContent = day;
+			dayElement.addEventListener("click", () => {
+				handleDayClick(day);
+			});
+			daysContainer.appendChild(dayElement);
+		}
+
+		function renderCalendar() {
+			daysContainer.innerHTML = "";
+			const firstDay = new Date(
+				currentDate.getFullYear(),
+				currentDate.getMonth(),
+				1
+			);
+			const lastDay = new Date(
+				currentDate.getFullYear(),
+				currentDate.getMonth() + 1,
+				0
+			);
+
+			monthYear.textContent = `${currentDate.toLocaleString("default", {
+				month: "long"
+			})} ${currentDate.getFullYear()}`;
+
+			for (let day = 1; day <= lastDay.getDate(); day++) {
+				createDayElement(day);
+			}
+		}
+
+		prevBtn.addEventListener("click", () => {
+			currentDate.setMonth(currentDate.getMonth() - 1);
+			renderCalendar();
+		});
+
+		nextBtn.addEventListener("click", () => {
+			currentDate.setMonth(currentDate.getMonth() + 1);
+			renderCalendar();
+		});
+
+		dateInput.addEventListener("click", () => {
+			calendar.style.display = "block";
+			positionCalendar();
+		});
+
+		document.addEventListener("click", (event) => {
+			if (!dateInput.contains(event.target) && !calendar.contains(event.target)) {
+				calendar.style.display = "none";
+			}
+		});
+
+		function positionCalendar() {
+			const inputRect = dateInput.getBoundingClientRect();
+			calendar.style.top = inputRect.bottom + "px";
+			calendar.style.left = inputRect.left + "px";
+		}
+
+		window.addEventListener("resize", positionCalendar);
+
+		renderCalendar();
+	</script>
+	<script>
+		var input = document.querySelector('input[name=basic]');
+
+		new Tagify(input);
+
+
+	</script>
+
+</body>
+
+</html>
